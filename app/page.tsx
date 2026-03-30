@@ -37,8 +37,9 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#F5F0E8" }}>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-2" style={{ backgroundColor: "#F5F0E8" }}>
         <p className="text-sm tracking-widest" style={{ color: "#9C8F7A" }}>読み込み中...</p>
+        <p className="text-xs tracking-wider" style={{ color: "#B0A48E" }}>初回アクセス時は1分ほどお待ちください</p>
       </div>
     );
   }
