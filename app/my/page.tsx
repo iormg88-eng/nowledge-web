@@ -45,9 +45,14 @@ export default function MyPage() {
     <div className="min-h-screen" style={{ backgroundColor: "#F5F0E8" }}>
       <header className="sticky top-0 z-10 px-6 py-4 flex items-center justify-between border-b" style={{ backgroundColor: "#F5F0E8", borderColor: "#D4C9B0" }}>
         <Logo />
-        <Link href="/" className="text-xs tracking-widest" style={{ color: "#9C8F7A" }}>
-          みんなの試験記録
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link href="/my/profile" className="text-xs tracking-widest" style={{ color: "#9C8F7A" }}>
+            プロフィール編集
+          </Link>
+          <Link href="/" className="text-xs tracking-widest" style={{ color: "#52B788" }}>
+            みんなの試験記録
+          </Link>
+        </div>
       </header>
 
       <main className="max-w-xl mx-auto px-4 py-10">

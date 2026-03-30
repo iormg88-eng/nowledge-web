@@ -32,6 +32,36 @@ export type Post = {
   updated_at: string;
 };
 
+export type UserProfile = {
+  id: string;
+  name: string;
+  bio: string | null;
+  avatar_url: string | null;
+  prefecture: string | null;
+  x_url: string | null;
+  instagram_url: string | null;
+  note_url: string | null;
+  youtube_url: string | null;
+  tiktok_url: string | null;
+  posts_count?: number;
+  posts?: {
+    id: string;
+    curiosity: string;
+    status: string;
+    tags: string[];
+    agris_count: number;
+    comments_count: number;
+    created_at: string;
+  }[];
+};
+
+export const usersApi = {
+  me: (token: string) => apiFetch("/api/v1/users/me", token),
+  updateMe: (token: string, data: object) =>
+    apiFetch("/api/v1/users/me", token, { method: "PATCH", body: JSON.stringify({ user: data }) }),
+  show: (token: string, id: string) => apiFetch(`/api/v1/users/${id}`, token),
+};
+
 export const postsApi = {
   list: (token: string, q?: string) =>
     apiFetch(`/api/v1/posts${q ? `?q=${encodeURIComponent(q)}` : ""}`, token),

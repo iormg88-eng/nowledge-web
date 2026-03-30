@@ -36,7 +36,14 @@ export default function PostCard({ post }: { post: Post }) {
         )}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span className="text-xs tracking-wider" style={{ color: "#9C8F7A" }}>{post.author.name}</span>
+            <Link
+              href={`/users/${post.author.id}`}
+              className="text-xs tracking-wider hover:underline"
+              style={{ color: "#9C8F7A" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {post.author.name}
+            </Link>
             <span className="text-xs" style={{ color: "#B0A48E" }}>{formatDate(post.created_at)}</span>
           </div>
           <div className="flex items-center gap-4">
