@@ -143,7 +143,12 @@ export default function PostDetailPage() {
 
       {/* ヘッダー */}
       <header className="sticky top-0 z-10 px-6 py-4 flex items-center justify-between border-b" style={{ backgroundColor: "#F5F0E8", borderColor: "#D4C9B0" }}>
-        <Logo />
+        <div className="flex items-center gap-4">
+          <Logo />
+          <Link href="/" className="text-xs tracking-widest" style={{ color: "#9C8F7A" }}>
+            ← 一覧へ
+          </Link>
+        </div>
         <div className="flex items-center gap-4">
           <span className="text-xs tracking-widest" style={{ color: "#9C8F7A" }}>
             {post.author.name} · {formatDate(post.created_at)}
