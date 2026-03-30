@@ -79,7 +79,7 @@ export default function ProfileEditPage() {
     if (!file || !token) return;
     setUploading(true);
     const ext = file.name.split(".").pop();
-    const path = `avatars/${userId}.${ext}`;
+    const path = `${userId}.${ext}`;
     const { error: uploadError } = await supabase.storage.from("avatars").upload(path, file, { upsert: true });
     if (uploadError) { setError("画像のアップロードに失敗しました。"); setUploading(false); return; }
     const { data } = supabase.storage.from("avatars").getPublicUrl(path);
