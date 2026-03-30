@@ -32,6 +32,7 @@ export default function EditPostPage() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -51,6 +52,19 @@ export default function EditPostPage() {
     };
     init();
   }, [id, router]);
+
+  const handleDelete = async () => {
+    if (!token) return;
+    if (!confirm("この記録を削除しますか？この操作は取り消せません。")) return;
+    setDeleting(true);
+    try {
+      await postsApi.destroy(token, id);
+      router.replace("/my");
+    } catch {
+      setError("削除に失敗しました。もう一度お試しください。");
+      setDeleting(false);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -185,6 +199,18 @@ export default function EditPostPage() {
               style={{ backgroundColor: "#1B4332", color: "#F5F0E8", opacity: saving ? 0.6 : 1 }}
             >
               {saving ? "保存中..." : "保存する"}
+            </button>
+          </div>
+
+          <div className="flex justify-center pt-2">
+            <button
+              type="button"
+              onClick={handleDelete}
+              disabled={deleting}
+              className="text-xs tracking-widest transition-opacity"
+              style={{ color: "#B0A48E", opacity: deleting ? 0.5 : 1 }}
+            >
+              {deleting ? "削除中..." : "この記録を削除する"}
             </button>
           </div>
 
