@@ -201,19 +201,24 @@ export default function PostDetailPage() {
         )}
 
         {/* あぐり！ */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={handleAgri}
-            className="px-6 py-2 text-sm tracking-widest border transition-colors"
-            style={{
-              borderColor: agried ? "#1B4332" : "#C8BFA8",
-              backgroundColor: agried ? "#1B4332" : "transparent",
-              color: agried ? "#F5F0E8" : "#1B4332",
-            }}
-          >
-            あぐり！
-          </button>
-          <span className="text-sm" style={{ color: "#52B788" }}>{agrisCount}</span>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleAgri}
+              className="px-6 py-2 text-sm tracking-widest border transition-colors"
+              style={{
+                borderColor: agried ? "#1B4332" : "#C8BFA8",
+                backgroundColor: agried ? "#1B4332" : "transparent",
+                color: agried ? "#F5F0E8" : "#1B4332",
+              }}
+            >
+              あぐり！
+            </button>
+            <span className="text-sm" style={{ color: "#52B788" }}>{agrisCount}</span>
+          </div>
+          <p className="text-[11px] leading-relaxed" style={{ color: "#B0A48E" }}>
+            参考になった・内容が良かったときに押してください。農家さんの励みになります。
+          </p>
         </div>
 
         {/* コメント */}
