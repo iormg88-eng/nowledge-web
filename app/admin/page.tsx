@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { usersApi } from "@/lib/api";
 import Logo from "@/components/Logo";
 
 type Aggregation = {
@@ -38,6 +39,9 @@ export default function AdminPage() {
     const init = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { router.replace("/auth"); return; }
+
+      const profile = await usersApi.me(session.access_token).catch(() => null);
+      if (!profile || profile.role !== "admin") { router.replace("/"); return; }
 
       const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
       const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

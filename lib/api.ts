@@ -43,6 +43,7 @@ export type UserProfile = {
   note_url: string | null;
   youtube_url: string | null;
   tiktok_url: string | null;
+  role?: "user" | "admin" | "maker";
   posts_count?: number;
   posts?: {
     id: string;

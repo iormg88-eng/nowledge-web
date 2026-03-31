@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { postsApi, type Post } from "@/lib/api";
+import { postsApi, usersApi, type Post } from "@/lib/api";
 import Logo from "@/components/Logo";
 
 function formatDate(iso: string) {
@@ -23,6 +23,10 @@ export default function MakerPage() {
     const init = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) { router.replace("/auth"); return; }
+
+      const profile = await usersApi.me(session.access_token).catch(() => null);
+      if (!profile || !["admin", "maker"].includes(profile.role ?? "")) { router.replace("/"); return; }
+
       setToken(session.access_token);
     };
     init();
