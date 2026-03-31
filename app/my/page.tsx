@@ -27,6 +27,11 @@ export default function MyPage() {
     init();
   }, [router]);
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.replace("/auth");
+  };
+
   const handleSearch = async (q: string) => {
     if (!token) return;
     const data = await postsApi.mine(token, q).catch(() => []);
@@ -52,6 +57,9 @@ export default function MyPage() {
           <Link href="/" className="text-xs tracking-widest" style={{ color: "#52B788" }}>
             みんなの試験記録
           </Link>
+          <button onClick={handleLogout} className="text-xs tracking-widest" style={{ color: "#9C8F7A" }}>
+            ログアウト
+          </button>
         </div>
       </header>
 
