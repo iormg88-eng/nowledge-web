@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Zen_Antique } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const zenAntique = Zen_Antique({
   weight: "400",
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="ja" className={`${zenAntique.variable} h-full`}>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-zen-antique)]">
         {children}
+        <Footer />
       </body>
     </html>
   );
